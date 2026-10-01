@@ -1,0 +1,20 @@
+{
+  "administrator": {
+    "displayName": "Administrator",
+    "passwordHash": "dffd409b66b5e6b0ba7a7253d1155f9d741aeba7e780220080ff473961ee2f75",
+    "token": "248a749356216ce6d15e1e7b82758e7c59eedaa9ac111cd34cab89173cd208bf",
+    "avatar": "🐱",
+    "createdAt": 1774981842066,
+    "adminAccess": true
+  },
+  "test_": {
+    "displayName": "Test_",
+    "passwordHash": "81ce0cdc764d5412db720ae22542fcbdde4bea9ab3bbc7c2c6c78a1b0a5b16fb",
+    "token": "615c2014dd0f319f0ce7fc53d9a912a9908999ad4585195c19f59fa6d9d4aeeb",
+    "avatar": "🎮",
+    "createdAt": 1774990791771,
+    "tags": [
+      "temporary account"
+    ]
+  }
+}

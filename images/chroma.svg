@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#111" rx="12"/>
+  <!-- Colorful column blocks -->
+  <rect x="20" y="200" width="36" height="80" rx="4" fill="#ef4444"/>
+  <rect x="20" y="140" width="36" height="55" rx="4" fill="#f97316"/>
+  <rect x="20" y="100" width="36" height="35" rx="4" fill="#eab308"/>
+  <rect x="64" y="160" width="36" height="120" rx="4" fill="#22c55e"/>
+  <rect x="64" y="100" width="36" height="55" rx="4" fill="#10b981"/>
+  <rect x="108" y="180" width="36" height="100" rx="4" fill="#3b82f6"/>
+  <rect x="108" y="110" width="36" height="65" rx="4" fill="#6366f1"/>
+  <rect x="152" y="150" width="36" height="130" rx="4" fill="#8b5cf6"/>
+  <rect x="152" y="90" width="36" height="55" rx="4" fill="#a855f7"/>
+  <rect x="196" y="170" width="36" height="110" rx="4" fill="#ec4899"/>
+  <rect x="196" y="100" width="36" height="65" rx="4" fill="#f43f5e"/>
+  <rect x="240" y="140" width="36" height="140" rx="4" fill="#14b8a6"/>
+  <rect x="240" y="80" width="36" height="55" rx="4" fill="#06b6d4"/>
+  <!-- Title -->
+  <text x="150" y="48" text-anchor="middle" font-family="Arial Black,Arial" font-size="28" font-weight="900" fill="white" letter-spacing="3">CHROMA</text>
+  <text x="150" y="68" text-anchor="middle" font-family="Arial" font-size="11" fill="#666" letter-spacing="2">COLOR PUZZLE</text>
+</svg>

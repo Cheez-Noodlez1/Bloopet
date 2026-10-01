@@ -1,0 +1,3 @@
+[DB] Database ready
+Server error: listen EADDRINUSE: address already in use 0.0.0.0:5000
+Failed to start server on port 5000: listen EADDRINUSE: address already in use 0.0.0.0:5000

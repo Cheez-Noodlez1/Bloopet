@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#71b3e6" rx="12"/>
+  <rect x="0" y="210" width="300" height="90" fill="#5b8c3c" rx="0 0 12 12"/>
+  <rect x="0" y="200" width="300" height="20" fill="#7abf4d"/>
+  <rect x="30" y="130" width="50" height="75" fill="#7abf4d"/>
+  <rect x="30" y="130" width="50" height="20" fill="#4a7c2f"/>
+  <rect x="80" y="150" width="50" height="55" fill="#7abf4d"/>
+  <rect x="80" y="150" width="50" height="20" fill="#4a7c2f"/>
+  <rect x="50" y="100" width="40" height="35" fill="#8b6914"/>
+  <rect x="60" y="85" width="30" height="20" rx="3" fill="#a37c1c"/>
+  <rect x="140" y="120" width="60" height="85" fill="#c0875a"/>
+  <rect x="140" y="120" width="60" height="20" fill="#8d5a2a"/>
+  <rect x="170" y="155" width="20" height="50" fill="#5a3010"/>
+  <rect x="155" y="130" width="16" height="16" fill="#bfdbfe" opacity="0.7"/>
+  <rect x="179" y="130" width="16" height="16" fill="#bfdbfe" opacity="0.7"/>
+  <rect x="220" y="100" width="50" height="105" fill="#c0875a"/>
+  <rect x="220" y="100" width="50" height="20" fill="#8d5a2a"/>
+  <text x="150" y="290" text-anchor="middle" font-family="Arial Black,Arial" font-size="13" font-weight="900" fill="#1a3a00" letter-spacing="2">MINECRAFT CLASSIC</text>
+</svg>

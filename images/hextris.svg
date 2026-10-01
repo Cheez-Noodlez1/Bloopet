@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#0a0a0a" rx="12"/>
+  <!-- Central hexagon ring -->
+  <polygon points="150,60 194,85 194,135 150,160 106,135 106,85" fill="none" stroke="#7c3aed" stroke-width="4"/>
+  <polygon points="150,75 181,92 181,127 150,145 119,127 119,92" fill="none" stroke="#6d28d9" stroke-width="3"/>
+  <!-- Falling hex blocks -->
+  <polygon points="150,25 165,33 165,50 150,58 135,50 135,33" fill="#ef4444"/>
+  <polygon points="209,60 224,68 224,85 209,93 194,85 194,68" fill="#3b82f6"/>
+  <polygon points="209,130 224,138 224,155 209,163 194,155 194,138" fill="#22c55e"/>
+  <polygon points="150,165 165,173 165,190 150,198 135,190 135,173" fill="#f59e0b"/>
+  <polygon points="91,130 106,138 106,155 91,163 76,155 76,138" fill="#8b5cf6"/>
+  <polygon points="91,60 106,68 106,85 91,93 76,85 76,68" fill="#ec4899"/>
+  <!-- Center dot -->
+  <circle cx="150" cy="110" r="10" fill="#7c3aed"/>
+  <!-- Small scattered hexagons -->
+  <polygon points="40,220 50,226 50,238 40,244 30,238 30,226" fill="#ef4444" opacity="0.7"/>
+  <polygon points="250,200 260,206 260,218 250,224 240,218 240,206" fill="#3b82f6" opacity="0.7"/>
+  <polygon points="60,260 70,266 70,278 60,284 50,278 50,266" fill="#22c55e" opacity="0.5"/>
+  <polygon points="230,250 240,256 240,268 230,274 220,268 220,256" fill="#f59e0b" opacity="0.5"/>
+  <!-- Title -->
+  <text x="150" y="295" text-anchor="middle" font-family="Arial Black,Arial" font-size="18" font-weight="900" fill="#7c3aed" letter-spacing="4">HEXTRIS</text>
+</svg>

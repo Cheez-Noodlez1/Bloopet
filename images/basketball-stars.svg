@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#1a3a1a" rx="12"/>
+  <rect x="0" y="0" width="300" height="300" fill="#1e4620" rx="12"/>
+  <line x1="150" y1="0" x2="150" y2="300" stroke="#2d6a35" stroke-width="2"/>
+  <circle cx="150" cy="150" r="50" fill="none" stroke="#2d6a35" stroke-width="2"/>
+  <rect x="0" y="220" width="80" height="80" fill="none" stroke="#2d6a35" stroke-width="2"/>
+  <rect x="220" y="220" width="80" height="80" fill="none" stroke="#2d6a35" stroke-width="2"/>
+  <rect x="10" y="220" width="60" height="50" fill="none" stroke="#2d6a35" stroke-width="2"/>
+  <rect x="230" y="220" width="60" height="50" fill="none" stroke="#2d6a35" stroke-width="2"/>
+  <circle cx="150" cy="110" r="28" fill="#f97316"/>
+  <line x1="150" y1="82" x2="150" y2="138" stroke="#7c2d12" stroke-width="2"/>
+  <line x1="122" y1="110" x2="178" y2="110" stroke="#7c2d12" stroke-width="2"/>
+  <path d="M126,88 Q150,75 174,88" fill="none" stroke="#7c2d12" stroke-width="2"/>
+  <path d="M126,132 Q150,145 174,132" fill="none" stroke="#7c2d12" stroke-width="2"/>
+  <rect x="120" y="50" width="60" height="8" rx="4" fill="#888"/>
+  <line x1="150" y1="58" x2="150" y2="82" stroke="#888" stroke-width="3"/>
+  <text x="150" y="285" text-anchor="middle" font-family="Arial Black,Arial" font-size="14" font-weight="900" fill="white" letter-spacing="2">BASKETBALL STARS</text>
+</svg>

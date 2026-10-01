@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#faf0e6" rx="12"/>
+  <rect width="300" height="300" fill="#bbada0" rx="12"/>
+  <rect x="16" y="16" width="62" height="62" rx="6" fill="#eee4da"/>
+  <rect x="86" y="16" width="62" height="62" rx="6" fill="#ede0c8"/>
+  <rect x="156" y="16" width="62" height="62" rx="6" fill="#f2b179"/>
+  <rect x="226" y="16" width="62" height="62" rx="6" fill="#f59563"/>
+  <rect x="16" y="86" width="62" height="62" rx="6" fill="#f67c5f"/>
+  <rect x="86" y="86" width="62" height="62" rx="6" fill="#f65e3b"/>
+  <rect x="156" y="86" width="62" height="62" rx="6" fill="#edcf72"/>
+  <rect x="226" y="86" width="62" height="62" rx="6" fill="#edcc61"/>
+  <rect x="16" y="156" width="62" height="62" rx="6" fill="#edc850"/>
+  <rect x="86" y="156" width="62" height="62" rx="6" fill="#edc53f"/>
+  <rect x="156" y="156" width="62" height="62" rx="6" fill="#edc22e"/>
+  <rect x="226" y="156" width="140" height="128" rx="6" fill="#3c3a32"/>
+  <text x="47" y="57" text-anchor="middle" font-family="Arial Black,Arial" font-size="22" font-weight="900" fill="#776e65">2</text>
+  <text x="117" y="57" text-anchor="middle" font-family="Arial Black,Arial" font-size="22" font-weight="900" fill="#776e65">4</text>
+  <text x="187" y="57" text-anchor="middle" font-family="Arial Black,Arial" font-size="20" font-weight="900" fill="white">8</text>
+  <text x="257" y="57" text-anchor="middle" font-family="Arial Black,Arial" font-size="18" font-weight="900" fill="white">16</text>
+  <text x="47" y="127" text-anchor="middle" font-family="Arial Black,Arial" font-size="18" font-weight="900" fill="white">32</text>
+  <text x="117" y="127" text-anchor="middle" font-family="Arial Black,Arial" font-size="18" font-weight="900" fill="white">64</text>
+  <text x="187" y="127" text-anchor="middle" font-family="Arial Black,Arial" font-size="15" font-weight="900" fill="white">128</text>
+  <text x="257" y="127" text-anchor="middle" font-family="Arial Black,Arial" font-size="15" font-weight="900" fill="white">256</text>
+  <text x="47" y="197" text-anchor="middle" font-family="Arial Black,Arial" font-size="15" font-weight="900" fill="white">512</text>
+  <text x="117" y="197" text-anchor="middle" font-family="Arial Black,Arial" font-size="13" font-weight="900" fill="white">1024</text>
+  <text x="187" y="197" text-anchor="middle" font-family="Arial Black,Arial" font-size="13" font-weight="900" fill="white">2048</text>
+  <text x="296" y="237" text-anchor="middle" font-family="Arial Black,Arial" font-size="36" font-weight="900" fill="#edc22e">2048</text>
+  <text x="296" y="272" text-anchor="middle" font-family="Arial" font-size="13" fill="#ccc0b3">Join the tiles!</text>
+</svg>

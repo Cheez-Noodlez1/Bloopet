@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 Page Workshop — Bloopet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#4f9eff;--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#e6edf3;--muted:#8b949e}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;overflow-x:hidden}
+
+/* ---- Top Bar ---- */
+.top-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;background:rgba(22,27,34,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.top-bar a{color:var(--muted);font-size:.82em;text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .15s}
+.top-bar a:hover{color:var(--accent)}
+.top-bar h1{font-size:1.05em;font-weight:900;color:var(--text);flex:1}
+.top-bar .badge-new{background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;font-size:.62em;font-weight:900;padding:2px 7px;border-radius:20px;letter-spacing:.04em;vertical-align:middle;margin-left:6px}
+
+/* ---- Layout ---- */
+.layout{display:grid;grid-template-columns:1fr 380px;gap:0;height:calc(100vh - 57px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr;height:auto}}
+
+/* ---- Preview ---- */
+.preview-pane{display:flex;flex-direction:column;align-items:stretch;background:#090d13;overflow:hidden}
+.preview-label{font-size:.7em;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-bottom:1px solid var(--border);background:rgba(22,27,34,.7);display:flex;align-items:center;justify-content:space-between}
+.preview-frame-wrap{flex:1;display:flex;align-items:stretch;justify-content:stretch;overflow:hidden;position:relative}
+#preview-frame{width:100%;height:100%;border:none;flex:1}
+.preview-test-btn{background:rgba(79,158,255,.15);border:1px solid rgba(79,158,255,.3);color:var(--accent);border-radius:20px;padding:4px 12px;font-size:.75em;font-weight:700;cursor:pointer;transition:background .15s}
+.preview-test-btn:hover{background:rgba(79,158,255,.25)}
+
+/* ---- Controls ---- */
+.controls-pane{background:var(--card);border-left:1px solid var(--border);overflow-y:auto}
+.section{padding:18px 18px 6px;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-title{font-size:.72em;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.control-row{margin-bottom:12px}
+.control-row label{display:block;font-size:.78em;font-weight:700;color:var(--muted);margin-bottom:5px}
+.control-row input[type=text],
+.control-row textarea{width:100%;background:#0d1117;border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:.82em;font-family:inherit;transition:border-color .15s;resize:vertical}
+.control-row input[type=text]:focus,
+.control-row textarea:focus{outline:none;border-color:var(--accent)}
+.control-row textarea{min-height:56px;max-height:100px}
+
+/* Emoji grid */
+.emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.emoji-btn{background:rgba(255,255,255,.04);border:2px solid transparent;border-radius:8px;padding:6px 2px;font-size:1.3em;text-align:center;cursor:pointer;transition:background .12s,border-color .12s;line-height:1}
+.emoji-btn:hover{background:rgba(255,255,255,.1)}
+.emoji-btn.active{border-color:var(--accent);background:rgba(79,158,255,.12)}
+.emoji-custom-row{display:flex;gap:8px;align-items:center;margin-top:8px}
+.emoji-custom-row input{flex:1;background:#0d1117;border:1px solid var(--border);border-radius:8px;color:var(--text);padding:6px 10px;font-size:.82em}
+.emoji-custom-row input:focus{outline:none;border-color:var(--accent)}
+.emoji-custom-row button{background:rgba(79,158,255,.15);border:1px solid rgba(79,158,255,.3);color:var(--accent);border-radius:8px;padding:6px 12px;font-size:.78em;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s}
+.emoji-custom-row button:hover{background:rgba(79,158,255,.25)}
+
+/* Theme picker */
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.theme-btn{border:2px solid transparent;border-radius:10px;padding:8px 6px;cursor:pointer;transition:border-color .12s,transform .1s;text-align:center;font-size:.7em;font-weight:800;letter-spacing:.03em}
+.theme-btn:hover{transform:scale(1.04)}
+.theme-btn.active{border-color:rgba(255,255,255,.7)}
+
+/* Animation picker */
+.anim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.anim-btn{background:rgba(255,255,255,.04);border:2px solid var(--border);border-radius:8px;padding:7px 8px;cursor:pointer;font-size:.75em;font-weight:700;color:var(--muted);transition:border-color .12s,color .12s,background .12s;text-align:center}
+.anim-btn:hover{border-color:var(--accent);color:var(--text);background:rgba(79,158,255,.07)}
+.anim-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(79,158,255,.13)}
+
+/* Toggle rows */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.toggle-row label{font-size:.82em;color:var(--text)}
+.toggle-row .tog{position:relative;display:inline-block;width:40px;height:22px;flex-shrink:0}
+.toggle-row .tog input{opacity:0;width:0;height:0}
+.tog-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#21262d;border-radius:22px;transition:.25s}
+.tog-slider:before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#e6edf3;border-radius:50%;transition:.25s}
+input:checked+.tog-slider{background:var(--accent)}
+input:checked+.tog-slider:before{transform:translateX(18px)}
+
+/* Action buttons */
+.action-row{display:flex;gap:10px;padding:16px 18px}
+.btn-save{flex:1;background:linear-gradient(135deg,#1a6cf5,#4f9eff);color:#fff;border:none;border-radius:24px;padding:11px;font-size:.88em;font-weight:800;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:0 3px 14px rgba(26,108,245,.35)}
+.btn-save:hover{transform:translateY(-2px);box-shadow:0 5px 22px rgba(26,108,245,.5)}
+.btn-reset{background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#f88;border-radius:24px;padding:11px 18px;font-size:.88em;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-reset:hover{background:rgba(255,80,80,.2)}
+
+/* Toast */
+.w-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#252f3e;border:1px solid rgba(79,158,255,.3);color:#e6edf3;padding:10px 22px;border-radius:30px;font-size:.82em;font-weight:700;pointer-events:none;opacity:0;transition:opacity .3s,transform .3s;z-index:9999;white-space:nowrap}
+.w-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Back button  */
+.back-link{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:.82em;font-weight:600;text-decoration:none;margin-right:auto}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="./" class="back-link"><i class="fas fa-chevron-left"></i> Home</a>
+  <h1>✏️ 404 Page Workshop <span class="badge-new">NEW</span></h1>
+  <button class="preview-test-btn" onclick="visitPreview()"><i class="fas fa-external-link-alt"></i> Preview live</button>
+</div>
+
+<div class="layout">
+
+  <!-- Live preview iframe -->
+  <div class="preview-pane">
+    <div class="preview-label">
+      <span>Live Preview</span>
+      <span id="preview-path-label" style="color:var(--accent);font-family:monospace">/404-preview</span>
+    </div>
+    <div class="preview-frame-wrap">
+      <iframe id="preview-frame" src="/404-preview" title="404 preview" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls-pane">
+
+    <div class="section">
+      <div class="section-title">Character / Emoji</div>
+      <div class="emoji-grid" id="emoji-grid">
+        <!-- built by JS -->
+      </div>
+      <div class="emoji-custom-row">
+        <input type="text" id="custom-emoji-input" placeholder="Type any emoji…" maxlength="4">
+        <button onclick="useCustomEmoji()">Use</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Text</div>
+      <div class="control-row">
+        <label>Title</label>
+        <input type="text" id="ctrl-title" value="" placeholder="Oops! Page not found">
+      </div>
+      <div class="control-row">
+        <label>Message</label>
+        <textarea id="ctrl-message" placeholder="This page doesn't exist..."></textarea>
+      </div>
+      <div class="control-row">
+        <label>Button Label</label>
+        <input type="text" id="ctrl-btn" value="" placeholder="Back to Games">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Theme</div>
+      <div class="theme-grid" id="theme-grid"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Number Animation</div>
+      <div class="anim-grid" id="anim-grid"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Options</div>
+      <div class="toggle-row">
+        <label>Show error code (404)</label>
+        <label class="tog"><input type="checkbox" id="ctrl-showCode" checked onchange="previewUpdate()"><span class="tog-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <label>Floating background emojis</label>
+        <label class="tog"><input type="checkbox" id="ctrl-floatEmojis" checked onchange="previewUpdate()"><span class="tog-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <label>Help button</label>
+        <label class="tog"><input type="checkbox" id="ctrl-helpBtn" checked onchange="previewUpdate()"><span class="tog-slider"></span></label>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-save" onclick="saveConfig()"><i class="fas fa-save"></i> Save 404 Page</button>
+      <button class="btn-reset" onclick="resetConfig()"><i class="fas fa-undo"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="w-toast" id="w-toast"></div>
+
+<script>
+var EMOJIS = ['🎮','🐶','🤖','🦄','🐱','👾','🌙','⭐','🚀','💀','🎲','🏆','🌀','🎯','🐸','🦊'];
+
+var THEMES = [
+  { id:'dark',   label:'Dark',   bg:'#0d1117',text:'#e6edf3',accent:'#4f9eff',  g1:'#ff4f6a',g2:'#4fffb8' },
+  { id:'neon',   label:'Neon',   bg:'#0a0a1a',text:'#f0f0ff',accent:'#b34fff',  g1:'#ff00ff',g2:'#00ffff' },
+  { id:'ocean',  label:'Ocean',  bg:'#001e3c',text:'#e0f2fe',accent:'#0ea5e9',  g1:'#0ea5e9',g2:'#38bdf8' },
+  { id:'sunset', label:'Sunset', bg:'#1a0800',text:'#fff0e6',accent:'#f97316',  g1:'#ef4444',g2:'#fbbf24' },
+  { id:'forest', label:'Forest', bg:'#001a0a',text:'#e0ffe6',accent:'#22c55e',  g1:'#16a34a',g2:'#86efac' },
+  { id:'candy',  label:'Candy',  bg:'#160020',text:'#ffe0ff',accent:'#d946ef',  g1:'#d946ef',g2:'#f0abfc' }
+];
+
+var ANIMS = [
+  { id:'glitch', label:'⚡ Glitch' },
+  { id:'pulse',  label:'💓 Pulse'  },
+  { id:'bounce', label:'🎾 Bounce' },
+  { id:'spin',   label:'🌀 Spin'   },
+  { id:'shake',  label:'🔔 Shake'  },
+  { id:'none',   label:'◻ None'   }
+];
+
+var DEFAULTS = {
+  emoji: '🎮',
+  title: 'Oops! Page not found',
+  message: "This page doesn't exist — it may have been moved, deleted, or you might have typed the URL wrong.",
+  btnText: 'Back to Games',
+  theme: 'dark',
+  animation: 'glitch',
+  showCode: true,
+  floatEmojis: true,
+  helpBtn: true
+};
+
+var cfg = JSON.parse(JSON.stringify(DEFAULTS));
+
+function loadSaved() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('bloopet_404') || '{}');
+    Object.assign(cfg, saved);
+  } catch(e) {}
+}
+
+function buildEmojiGrid() {
+  var grid = document.getElementById('emoji-grid');
+  grid.innerHTML = '';
+  EMOJIS.forEach(function(em) {
+    var btn = document.createElement('button');
+    btn.className = 'emoji-btn' + (em === cfg.emoji ? ' active' : '');
+    btn.textContent = em;
+    btn.title = em;
+    btn.onclick = function() { cfg.emoji = em; updateActive('emoji-grid', btn); previewUpdate(); };
+    grid.appendChild(btn);
+  });
+}
+
+function buildThemeGrid() {
+  var grid = document.getElementById('theme-grid');
+  grid.innerHTML = '';
+  THEMES.forEach(function(t) {
+    var btn = document.createElement('button');
+    btn.className = 'theme-btn' + (t.id === cfg.theme ? ' active' : '');
+    btn.style.cssText = 'background:' + t.bg + ';color:' + t.text + ';border-color:' + (t.id === cfg.theme ? t.accent : 'transparent');
+    btn.innerHTML = '<div style="font-size:1.4em;margin-bottom:2px">●</div>' + t.label;
+    btn.style.color = t.text;
+    btn.title = t.label;
+    btn.onclick = function() {
+      cfg.theme = t.id;
+      buildThemeGrid();
+      previewUpdate();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function buildAnimGrid() {
+  var grid = document.getElementById('anim-grid');
+  grid.innerHTML = '';
+  ANIMS.forEach(function(a) {
+    var btn = document.createElement('button');
+    btn.className = 'anim-btn' + (a.id === cfg.animation ? ' active' : '');
+    btn.textContent = a.label;
+    btn.onclick = function() { cfg.animation = a.id; updateActive('anim-grid', btn, 'anim-btn'); previewUpdate(); };
+    grid.appendChild(btn);
+  });
+}
+
+function updateActive(gridId, clickedBtn, cls) {
+  cls = cls || 'emoji-btn';
+  document.getElementById(gridId).querySelectorAll('.' + cls).forEach(function(b) { b.classList.remove('active'); });
+  clickedBtn.classList.add('active');
+}
+
+function syncInputsToConfig() {
+  cfg.title   = document.getElementById('ctrl-title').value.trim()   || DEFAULTS.title;
+  cfg.message = document.getElementById('ctrl-message').value.trim() || DEFAULTS.message;
+  cfg.btnText = document.getElementById('ctrl-btn').value.trim()     || DEFAULTS.btnText;
+  cfg.showCode    = document.getElementById('ctrl-showCode').checked;
+  cfg.floatEmojis = document.getElementById('ctrl-floatEmojis').checked;
+  cfg.helpBtn     = document.getElementById('ctrl-helpBtn').checked;
+}
+
+function syncControlsFromConfig() {
+  document.getElementById('ctrl-title').value   = cfg.title   || '';
+  document.getElementById('ctrl-message').value = cfg.message || '';
+  document.getElementById('ctrl-btn').value     = cfg.btnText || '';
+  document.getElementById('ctrl-showCode').checked    = !!cfg.showCode;
+  document.getElementById('ctrl-floatEmojis').checked = !!cfg.floatEmojis;
+  document.getElementById('ctrl-helpBtn').checked     = cfg.helpBtn !== false;
+}
+
+function previewUpdate() {
+  syncInputsToConfig();
+  var frame = document.getElementById('preview-frame');
+  var t = THEMES.find(function(x){ return x.id === cfg.theme; }) || THEMES[0];
+
+  var animCss = buildAnimCss(cfg.animation, t);
+  var floaters = cfg.floatEmojis ? buildFloaters(cfg.emoji) : '';
+  var codeHtml = cfg.showCode
+    ? '<div class="code-num" id="code-num">' + cfg.emoji + '</div>'
+    : '';
+
+  var doc = buildPageHtml(cfg, t, animCss, floaters, codeHtml);
+  frame.srcdoc = doc;
+}
+
+function buildAnimCss(anim, t) {
+  var base = '.code-num{font-size:clamp(4em,18vw,9em);font-weight:900;color:' + t.accent + ';line-height:1;position:relative;user-select:none;display:inline-block;margin-bottom:4px}';
+  if (anim === 'glitch') {
+    return base +
+      '.code-num::before,.code-num::after{content:attr(data-code);position:absolute;inset:0;font-size:1em;font-weight:900}' +
+      '.code-num::before{color:' + t.g1 + ';clip-path:polygon(0 0,100% 0,100% 45%,0 45%);animation:glt 2.5s infinite linear alternate-reverse}' +
+      '.code-num::after{color:' + t.g2 + ';clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);animation:glb 2.5s infinite linear alternate-reverse}' +
+      '@keyframes glt{0%{transform:translate(-3px,0)}50%{transform:translate(3px,0)}100%{transform:translate(-3px,0)}}' +
+      '@keyframes glb{0%{transform:translate(3px,0)}50%{transform:translate(-3px,0)}100%{transform:translate(3px,0)}}';
+  }
+  if (anim === 'pulse') {
+    return base + '@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}} .code-num{animation:pulse 1.8s ease-in-out infinite}';
+  }
+  if (anim === 'bounce') {
+    return base + '@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}} .code-num{animation:bounce 1.2s ease-in-out infinite}';
+  }
+  if (anim === 'spin') {
+    return base + '@keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}} .code-num{animation:spin 3s linear infinite}';
+  }
+  if (anim === 'shake') {
+    return base + '@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}} .code-num{animation:shake 0.8s ease-in-out infinite}';
+  }
+  return base;
+}
+
+function buildFloaters(emoji) {
+  var floatEmojis = ['🎮','🏆','⭐','🎯','🎲'];
+  if (emoji && !floatEmojis.includes(emoji)) floatEmojis[0] = emoji;
+  var html = '';
+  var durs = [14,18,12,16,20];
+  var delays = [0,4,2,6,1];
+  var lefts = [10,30,55,75,88];
+  floatEmojis.forEach(function(em, i) {
+    html += '<div style="position:fixed;font-size:2em;opacity:.07;animation:float linear infinite;left:' + lefts[i] + '%;animation-duration:' + durs[i] + 's;animation-delay:' + delays[i] + 's;pointer-events:none">' + em + '</div>';
+  });
+  return html;
+}
+
+function buildPageHtml(c, t, animCss, floaters, codeHtml) {
+  var showCode = c.showCode;
+  var helpBtn = c.helpBtn !== false;
+  var num404Attr = showCode ? ' data-code="404"' : '';
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>' +
+    '*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}' +
+    'body{background:' + t.bg + ';color:' + t.text + ';font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:24px;overflow:hidden}' +
+    animCss +
+    '.stars{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}' +
+    '.star{position:absolute;background:' + t.text + ';border-radius:50%;opacity:0;animation:twinkle linear infinite}' +
+    '@keyframes twinkle{0%,100%{opacity:0}50%{opacity:.4}}' +
+    '@keyframes float{from{transform:translateY(110vh) rotate(0deg)}to{transform:translateY(-10vh) rotate(360deg)}}' +
+    'h1{font-size:1.35em;font-weight:800;margin:12px 0 8px;color:' + t.text + '}' +
+    'p{color:' + t.text + ';opacity:.6;max-width:380px;line-height:1.6;margin-bottom:26px;font-size:.9em}' +
+    '.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}' +
+    '.btn{display:inline-flex;align-items:center;gap:7px;border-radius:30px;padding:10px 22px;font-size:.88em;font-weight:800;text-decoration:none;transition:transform .12s;cursor:pointer;border:none}' +
+    '.btn-primary{background:' + t.accent + ';color:' + t.bg + '}' +
+    '.btn-primary:hover{transform:translateY(-2px)}' +
+    '.btn-ghost{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:' + t.text + '}' +
+    '.btn-ghost:hover{transform:translateY(-2px)}' +
+    '</style></head><body>' +
+    '<div class="stars" id="stars"></div>' +
+    floaters +
+    (showCode ? '<div class="code-num"' + num404Attr + '>' + (c.emoji || '🎮') + '<br><span style="font-size:.4em;display:block;margin-top:-8px;letter-spacing:-.02em">404</span></div>' : '') +
+    '<h1>' + escHtml(c.title) + '</h1>' +
+    '<p>' + escHtml(c.message) + '</p>' +
+    '<div class="btns">' +
+    '<a class="btn btn-primary" href="./">' + escHtml(c.btnText || 'Back to Games') + '</a>' +
+    (helpBtn ? '<a class="btn btn-ghost" href="./help">Help</a>' : '') +
+    '</div>' +
+    '<script>var s=document.getElementById("stars");for(var i=0;i<50;i++){var el=document.createElement("div");el.className="star";var sz=Math.random()*2+1;el.style.cssText="width:"+sz+"px;height:"+sz+"px;left:"+Math.random()*100+"%;top:"+Math.random()*100+"%;animation-duration:"+(Math.random()*5+3)+"s;animation-delay:"+(Math.random()*5)+"s";s.appendChild(el);}<\/script>' +
+    '</body></html>';
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function useCustomEmoji() {
+  var val = document.getElementById('custom-emoji-input').value.trim();
+  if (!val) return;
+  cfg.emoji = val;
+  buildEmojiGrid();
+  previewUpdate();
+}
+
+function saveConfig() {
+  syncInputsToConfig();
+  localStorage.setItem('bloopet_404', JSON.stringify(cfg));
+  showToast('✅ 404 page saved! It will appear when a page isn\'t found.');
+}
+
+function resetConfig() {
+  cfg = JSON.parse(JSON.stringify(DEFAULTS));
+  localStorage.removeItem('bloopet_404');
+  syncControlsFromConfig();
+  buildEmojiGrid();
+  buildThemeGrid();
+  buildAnimGrid();
+  previewUpdate();
+  showToast('🔄 Reset to default 404 page.');
+}
+
+function visitPreview() {
+  window.open('/404-preview', '_blank');
+}
+
+var _toastTimer = null;
+function showToast(msg) {
+  var t = document.getElementById('w-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  if (_toastTimer) clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+
+// Debounced preview update on text inputs
+function debounce(fn, ms) { var t; return function() { clearTimeout(t); t = setTimeout(fn, ms); }; }
+var debouncedPreview = debounce(previewUpdate, 250);
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadSaved();
+  syncControlsFromConfig();
+  buildEmojiGrid();
+  buildThemeGrid();
+  buildAnimGrid();
+  previewUpdate();
+
+  document.getElementById('ctrl-title').addEventListener('input', debouncedPreview);
+  document.getElementById('ctrl-message').addEventListener('input', debouncedPreview);
+  document.getElementById('ctrl-btn').addEventListener('input', debouncedPreview);
+});
+</script>
+<!-- Inside /games/404-workshop/index.html -->
+<script>
+  // Retrieve the string from localStorage
+  const storedConfig = localStorage.getItem('bloopet_404');
+  
+  // Check if configuration exists
+  if (storedConfig) {
+      try {
+          // Convert the JSON string back into a JavaScript object
+          const cfg = JSON.parse(storedConfig);
+          
+          // Apply your custom theme or settings
+          console.log("Applying theme:", cfg.theme);
+          // Example: document.body.style.backgroundColor = cfg.themeColor;
+      } catch (e) {
+          console.error("Error parsing 404 configuration:", e);
+      }
+  } else {
+      // Fallback: Apply a default design for new visitors
+      console.log("No custom config found. Using default 404 design.");
+  }
+</script>
+
+</body>
+</html>

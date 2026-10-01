@@ -1,0 +1,12 @@
+Add 40 locally-hosted games from radon-games-assets repo (55 → 95 total)
+
+- Downloaded 2873 files (~245MB) from github.com/3kho/radon-games-assets
+- Added 40 new games all served from /games/<id>/ — no external links
+- Games include: 2048, Flappy Bird, Pac-Man, Wordle, Run 3, Geometry Dash
+  Lite, Minecraft Classic, Moto X3M variants (Pool Party, Spooky Land, Winter)
+  HexGL, Hextris, Basketball Stars, Duck Life 2, Slope 2, Space Invaders,
+  Tank Trouble, Tube Jumpers, Rolling Sky, Rooftop Snipers, and more
+- Generated SVG thumbnails for all new games
+- Updated build_index.js games array and categories object
+- Rebuilt index.html (node build_index.js → "Done. Games: 95")
+- Updated replit.md to reflect new game count (95 total, all local)

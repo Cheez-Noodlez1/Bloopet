@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#0d0d1a" rx="12"/>
+  <!-- cursor arrow -->
+  <polygon points="60,40 60,100 75,85 88,115 96,112 83,82 100,82" fill="#ffffff" opacity="0.9"/>
+  <!-- trail particles -->
+  <circle cx="55" cy="45" r="4" fill="#6c63ff" opacity="0.9"/>
+  <circle cx="48" cy="52" r="5" fill="#8b5cf6" opacity="0.8"/>
+  <circle cx="40" cy="62" r="4" fill="#ff6584" opacity="0.7"/>
+  <circle cx="34" cy="73" r="5" fill="#ff8c00" opacity="0.6"/>
+  <circle cx="30" cy="85" r="3" fill="#ffd700" opacity="0.5"/>
+  <circle cx="28" cy="97" r="4" fill="#44ff88" opacity="0.4"/>
+  <circle cx="29" cy="110" r="3" fill="#00d4ff" opacity="0.3"/>
+  <!-- sparkle shapes -->
+  <path d="M130,50 L133,43 L136,50 L143,53 L136,56 L133,63 L130,56 L123,53 Z" fill="#ffd700" opacity="0.9"/>
+  <path d="M155,80 L157,75 L159,80 L164,82 L159,84 L157,89 L155,84 L150,82 Z" fill="#ff6584" opacity="0.8"/>
+  <path d="M140,100 L142,96 L144,100 L148,102 L144,104 L142,108 L140,104 L136,102 Z" fill="#6c63ff" opacity="0.7"/>
+  <path d="M160,120 L161,117 L162,120 L165,121 L162,122 L161,125 L160,122 L157,121 Z" fill="#44ff88" opacity="0.6"/>
+  <!-- rainbow dots arc -->
+  <circle cx="100" cy="160" r="5" fill="#ff6584"/>
+  <circle cx="115" cy="155" r="4" fill="#ff8c00"/>
+  <circle cx="128" cy="148" r="5" fill="#ffd700"/>
+  <circle cx="139" cy="138" r="4" fill="#44ff88"/>
+  <circle cx="147" cy="126" r="5" fill="#00d4ff"/>
+  <circle cx="152" cy="112" r="4" fill="#6c63ff"/>
+  <!-- label -->
+  <text x="100" y="183" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold" opacity="0.9">Cursor Trail</text>
+</svg>

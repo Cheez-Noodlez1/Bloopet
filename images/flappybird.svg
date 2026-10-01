@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#4ec0ca" rx="12"/>
+  <rect x="0" y="0" width="70" height="140" fill="#74bf2e"/>
+  <rect x="0" y="180" width="70" height="120" fill="#74bf2e"/>
+  <rect x="-5" y="130" width="80" height="20" rx="4" fill="#5a9e24"/>
+  <rect x="-5" y="175" width="80" height="20" rx="4" fill="#5a9e24"/>
+  <rect x="230" y="0" width="70" height="110" fill="#74bf2e"/>
+  <rect x="230" y="170" width="70" height="130" fill="#74bf2e"/>
+  <rect x="225" y="100" width="80" height="20" rx="4" fill="#5a9e24"/>
+  <rect x="225" y="165" width="80" height="20" rx="4" fill="#5a9e24"/>
+  <ellipse cx="145" cy="150" rx="30" ry="26" fill="#f9ca24"/>
+  <ellipse cx="145" cy="140" rx="22" ry="20" fill="#f9ca24"/>
+  <ellipse cx="158" cy="147" rx="14" ry="9" fill="white"/>
+  <ellipse cx="163" cy="140" rx="10" ry="9" fill="#f9ca24"/>
+  <polygon points="165,148 182,143 182,153" fill="#f97316"/>
+  <circle cx="160" cy="137" r="6" fill="white"/>
+  <circle cx="161" cy="137" r="4" fill="#1a1a1a"/>
+  <circle cx="159" cy="136" r="1.5" fill="white"/>
+  <text x="150" y="290" text-anchor="middle" font-family="Arial Black,Arial" font-size="15" font-weight="900" fill="#333" letter-spacing="2">FLAPPY BIRD</text>
+</svg>

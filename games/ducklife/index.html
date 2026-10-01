@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duck Life Games</title>
+<style>
+  body { background: #0a0a14; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+  h1 { color: #00d4ff; text-align: center; margin-bottom: 30px; }
+  .cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .card { display: flex; flex-direction: column; align-items: center; background: #1a1a2e; border: 2px solid #333; border-radius: 12px; padding: 16px; text-decoration: none; color: #fff; width: 160px; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
+  .card:hover { border-color: #00d4ff; transform: scale(1.05); }
+  .card img { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; }
+  .card span { font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<h1>Duck Life Games</h1>
+<div class="cards">
+    <a href="ducklife1/index.html" class="card">
+      <img src="/img/games/ducklife1.png" onerror="this.style.display='none'">
+      <span>Duck Life 1</span>
+    </a>
+    <a href="ducklife2/index.html" class="card">
+      <img src="/img/games/ducklife2.png" onerror="this.style.display='none'">
+      <span>Duck Life 2</span>
+    </a>
+    <a href="ducklife3/index.html" class="card">
+      <img src="/img/games/ducklife3.png" onerror="this.style.display='none'">
+      <span>Duck Life 3</span>
+    </a>
+    <a href="ducklife4/index.html" class="card">
+      <img src="/img/games/ducklife4.png" onerror="this.style.display='none'">
+      <span>Duck Life 4</span>
+    </a></div>
+</body>
+</html>
