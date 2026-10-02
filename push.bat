@@ -1,1 +1,2 @@
+@echo off
 git add . && git commit -m "general updates" && git push origin main
