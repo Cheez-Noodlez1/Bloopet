@@ -1336,15 +1336,15 @@ const server = http.createServer(async (req, res) => {
       } catch(e) { return json(res, 400, { error: 'Bad request' }); }
     }
 
-    // ── ADMIN: GET /api/admin/announcement ───────────────────────────────
-    if (req.method === 'GET' && urlPath === '/api/admin/announcement') {
+    // ── ADMIN: GET /api/admin/test ───────────────────────────────
+    if (req.method === 'GET' && urlPath === '/api/admin/test') {
       const { key, token } = getAdminAuth(req);
       if (!await isAdminAuth(key, token)) return json(res, 403, { error: 'Forbidden' });
       return json(res, 200, await db.getAnnouncement());
     }
 
-    // ── ADMIN: POST /api/admin/announcement ──────────────────────────────
-    if (req.method === 'POST' && urlPath === '/api/admin/announcement') {
+    // ── ADMIN: POST /api/admin/test ──────────────────────────────
+    if (req.method === 'POST' && urlPath === '/api/admin/test') {
       try {
         const { key, token, text, active } = await readBody(req);
         if (!await isAdminAuth(key, token)) return json(res, 403, { error: 'Forbidden' });
@@ -1353,8 +1353,8 @@ const server = http.createServer(async (req, res) => {
       } catch(e) { return json(res, 400, { error: 'Bad request' }); }
     }
 
-    // ── PUBLIC: GET /api/announcement ────────────────────────────────────
-    if (req.method === 'GET' && urlPath === '/api/announcement') {
+    // ── PUBLIC: GET /api/test ────────────────────────────────────
+    if (req.method === 'GET' && urlPath === '/api/test') {
       const ann = await db.getAnnouncement();
       return json(res, 200, ann.active ? ann : { active: false, text: '' });
     }
