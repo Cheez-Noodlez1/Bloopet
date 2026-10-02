@@ -2687,3 +2687,15 @@ nav {
 .featured img {
     border-radius: 1.5vw !important;
 }
+/* Ensure readable text scales properly on mobile viewports */
+body {
+    font-size: 16px;
+}
+
+/* If your game titles or labels are too tiny on small screens: */
+@media (max-width: 600px) {
+    .game-card title, p, span {
+        font-size: 14px; /* Step up text sizes slightly for mobile layouts */
+    }
+}
+
