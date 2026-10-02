@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Exclude private developer panels or temporary files if needed
+Disallow: /config/
+Disallow: /private/
+
+# Link directly to your live production sitemap
+Sitemap: https://bloopet.netlify.app/sitemap.xml
