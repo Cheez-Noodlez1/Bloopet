@@ -914,47 +914,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ── SSE: GET /api/sse ─────────────────────────────────────────────────
-    if (req.method === 'GET' && urlPath === '/api/sse') {
-      const connId = ++_connId;
-      const qs2    = new URLSearchParams(req.url.split('?')[1] || '');
-      const qToken = qs2.get('auth');
-      const user   = await db.getUserByToken(qToken || getTokenFromReq(req));
-      const client = {
-        connId, res,
-        username: user ? user.displayName : null,
-        avatar:   user ? (user.avatar || '🎮') : '🎮',
-        gameId:   qs2.get('game') || null,
-        room:     null
-      };
-      sseClients.set(connId, client);
-      res.writeHead(200, {
-        'Content-Type':  'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection':    'keep-alive',
-        'X-Accel-Buffering': 'no'
-      });
-      res.write(`data: ${JSON.stringify({ type: 'welcome', connId })}\n\n`);
-      res.write(`data: ${JSON.stringify({ type: 'online', list: getOnlineList() })}\n\n`);
-      const hb = setInterval(() => { try { res.write(': hb\n\n'); } catch(e) { clearInterval(hb); } }, 25000);
-      req.on('close', () => {
-        clearInterval(hb);
-        const leaving = sseClients.get(connId);
-        if (leaving && leaving.room) {
-          const room = rooms.get(leaving.room);
-          if (room) {
-            room.players.delete(connId);
-            broadcastRoom(leaving.room, { type: 'room_update', room: getRoomInfo(leaving.room) });
-            if (room.players.size === 0) rooms.delete(leaving.room);
-          }
-        }
-        sseClients.delete(connId);
-        broadcastOnline();
-      });
-      broadcastOnline();
-      return;
-    }
-
-    // ── SSE: POST /api/sse/game ───────────────────────────────────────────
+   
     if (req.method === 'POST' && urlPath === '/api/sse/game') {
       try {
         const { connId, gameId } = await readBody(req);
@@ -3015,14 +2975,7 @@ fetch('/api/leaderboard').then(r=>r.json()).then(function(d){
 <div class="card"><h2>🎮 Recently Added</h2>
 <div id="new-games-list"><p style="color:#8b949e"><i class="fas fa-spinner fa-spin"></i> Loading…</p></div></div>
 <script>
-fetch('/api/popular').then(r=>r.json()).then(function(d){
-  var el=document.getElementById('new-games-list');
-  var games=(d.games||[]).slice(-12).reverse();
-  if(!games.length){el.innerHTML='<p style="color:#8b949e">Check the homepage for all games!</p>';return;}
-  el.innerHTML=games.map(function(g){return'<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #21262d"><span style="font-size:1.5em">'+(g.thumbnail||'🎮')+'</span><div><div style="font-weight:700">'+g.name+'</div><div style="font-size:.8em;color:#8b949e">'+g.category+'</div></div><a href="/games/'+g.id+'/" style="margin-left:auto;background:rgba(79,158,255,.15);color:#4f9eff;border:1px solid rgba(79,158,255,.3);border-radius:20px;padding:4px 12px;font-size:.8em;font-weight:700;text-decoration:none">Play</a></div>';}).join('');
-}).catch(function(){document.getElementById('new-games-list').innerHTML='<p><a href="/">View all games on the homepage</a></p>';});
-</script>
-<br><a class="btn" href="/"><i class="fas fa-gamepad"></i> View All 88+ Games</a>`],
+  
 
       '/credits': ['Credits','fas fa-star',`
 <p class="subtitle">The games and tools that make Bloopet possible.</p>

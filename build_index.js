@@ -599,36 +599,8 @@ ${gameCards}
         });
     }
 
-    function loadPopular() {
-        fetch('/api/popular').then(function(r) { return r.json(); }).then(function(data) {
-            var grid = document.getElementById('popular-grid');
-            var note = document.getElementById('popular-note');
-            playsData = {};
-            data.forEach(function(d) { playsData[d.id] = d.count; });
-            updateStats();
-            updatePlayChips();
-            grid.innerHTML = '';
-            var defaults = ['vex6','drive-mad','slope','moto-x3m','bob-the-robber-2','minecraft'];
-            if (!data.length) {
-                defaults.forEach(function(id) { var g = gameMap[id]; if (g) grid.innerHTML += renderPopCard(g, null); });
-                note.style.display = 'none';
-            } else {
-                var shown = new Set(data.map(function(d) { return d.id; }));
-                data.forEach(function(item) { var g = gameMap[item.id]; if (g) grid.innerHTML += renderPopCard(g, item.count); });
-                if (data.length < 6) {
-                    for (var i = 0; i < defaults.length && data.length < 6; i++) {
-                        var did = defaults[i];
-                        if (!shown.has(did) && gameMap[did]) { grid.innerHTML += renderPopCard(gameMap[did], null); data.push({id:did}); }
-                    }
-                }
-                note.style.display = 'block';
-            }
-            grid.querySelectorAll('.pop-card').forEach(function(card) {
-                card.addEventListener('click', function() { addRecent(this.dataset.id); trackPlay(this.dataset.id); });
-            });
-        }).catch(function(){});
-    }
-
+   
+            
     // ---- Submit modal ----
     function openSubmit() {
         document.getElementById('submit-overlay').classList.add('open');

@@ -53,7 +53,7 @@ self.addEventListener('fetch', function(event) {
   try { url = new URL(req.url); } catch(e) { return; }
 
   /* SSE / WebSocket: always network */
-  if (url.pathname === '/api/sse') return;
+ 
 
   /* API calls: network-first, offline → empty JSON error */
   if (url.pathname.startsWith('/api/')) {
