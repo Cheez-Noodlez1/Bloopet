@@ -1,1 +1,2 @@
+/minecraft/index.html filter=lfs diff=lfs merge=lfs -text
 games/minecraft1/index.html filter=lfs diff=lfs merge=lfs -text
